@@ -1,2 +1,2 @@
 # cypress_practice
-auto_tests
+UI end-2-end tests
