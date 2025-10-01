@@ -8,7 +8,7 @@ describe('End-to-end тест-кейс покупки аватара на сай
         cy.get('.MuiButton-root').should('be.visible').click()
 
         cy.intercept('GET','https://api.pokemonbattle.ru/v2/pokemons?sort=asc_date&status=1&page=1').as('get_pokemons')
-        cy.wait('@get_pokemons') // ждем ответ бэкенда на GET метод на получение списка покемонов
+        cy.wait('@get_pokemons') // ждем ответ бэкенда на GET метод - получение списка покемонов
         cy.get('.header_card_trainer').should('be.visible').click()
 
         cy.intercept('POST','https://api.pokemonbattle.ru/v2/technical_routes/single_trainer_data').as('post_trainer')
