@@ -45,27 +45,27 @@ describe('Тест-кейсы авторизации login.qa.studio', function(
   })
     it('Негативный кейс авторизации с верным логином/неверным паролем', function() {
     cy.get(main.email).should('be.visible').type(logpass.login) // вводим имя пользователя
-    cy.get(main.password).should('be.visible').type('qa_one_love12') // вводим пароль
+    cy.get(main.password).should('be.visible').type('неверный пароль') // вводим пароль
     cy.get(main.login_button).should('be.visible').click() // отправка формы
     cy.get(result.title).should('be.visible').contains('Такого логина или пароля нет')
     cy.get(result.close).should('be.visible').click()
   })
   it('Негативный кейс авторизации с неверным логином/верным паролем', function() {
-    cy.get(main.email).should('be.visible').type('german@dolnikov.ru2') // вводим имя пользователя
+    cy.get(main.email).should('be.visible').type('неверный логин') // вводим имя пользователя
     cy.get(main.password).should('be.visible').type(logpass.password) // вводим пароль
     cy.get(main.login_button).should('be.visible').click() // отправка формы
     cy.get(result.title).should('be.visible').contains('Такого логина или пароля нет')
     cy.get(result.close).should('be.visible').click()
   })
   it('Негативный кейс на проверку валидации', function() {
-    cy.get(main.email).should('be.visible').type('germandolnikov.ru') // вводим имя пользователя
+    cy.get(main.email).should('be.visible').type('ввод логина без @') // вводим имя пользователя
     cy.get(main.password).should('be.visible').type(logpass.password) // вводим пароль
     cy.get(main.login_button).should('be.visible').click() // отправка формы
     cy.get(result.title).should('be.visible').contains('Нужно исправить проблему валидации')
     cy.get(result.close).should('be.visible').click()
   })
   it('Тест-кейс на приведение верхнего регистра к нижнему', function() {
-    cy.get(main.email).should('be.visible').type('GerMan@Dolnikov.ru') // вводим имя пользователя
+    cy.get(main.email).should('be.visible').type('ввод логина с одной буквой из верхнего регистра') // вводим имя пользователя
     cy.get(main.password).should('be.visible').type(logpass.password) // вводим пароль
     cy.get(main.login_button).should('be.visible').click() // отправка формы
     cy.get(result.title).should('be.visible').contains('Авторизация прошла успешно') // тест провален, что и ожидалось
