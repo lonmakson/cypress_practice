@@ -8,15 +8,15 @@ describe('End-to-end тест-кейс покупки аватара на сай
         cy.get('.MuiButton-root').should('be.visible').click()
 
         cy.intercept('GET','https://api.pokemonbattle.ru/v2/pokemons?sort=asc_date&status=1&page=1').as('get_pokemons')
-        cy.wait('@get_pokemons') // ждем ответ бэкенда на GET метод - получение списка покемонов
+        cy.wait('@get_pokemons') // ждем ответ бэкенда на GET-метод - получение списка покемонов
         cy.get('.header_card_trainer').should('be.visible').click()
 
         cy.intercept('POST','https://api.pokemonbattle.ru/v2/technical_routes/single_trainer_data').as('post_trainer')
-        cy.wait('@post_trainer') // ждем ответ бэкенда на POST метод
+        cy.wait('@post_trainer') // ждем ответ бэкенда на POST-метод
         cy.get('[data-qa="shop"]').should('be.visible').click() // переходим в магазин с аватарами
 
         cy.intercept('GET','https://api.pokemonbattle.ru/v2/debug_menu/get_avatars').as('get_avatars')
-        cy.wait('@get_avatars') // ждем ответ бэкенда на GET метод на получение списка аватаров
+        cy.wait('@get_avatars') // ждем ответ бэкенда на GET-метод на получение списка аватаров
 
         cy.get('section.shop li.shop__item:not(.feature-empty):visible')/* здесь мы исключаем empty аватар*/.then($items => {
 const i = Cypress._.random(0, $items.length - 1)
